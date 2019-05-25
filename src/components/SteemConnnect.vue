@@ -73,7 +73,7 @@
       initialize() {
         this.api = sc2.Initialize({
           app: 'steemshopping',
-          callbackURL: 'https://www.rewards.com/rwrd-steemit',
+          callbackURL: 'http://localhost:8080',
           accessToken: 'access_token',
           scope: ['vote', 'comment'],
         });
