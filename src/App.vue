@@ -1,17 +1,7 @@
 <template>
   <div id="rw-steemit">
-    <div class="container">
-      <b-row>
-        <b-col md="12">
-          <steem-connect></steem-connect>
-        </b-col>
-      </b-row>
-      <b-row class="mt-5">
-        <b-col md="12">
-          <blog-feeds></blog-feeds>
-        </b-col>
-      </b-row>
-    </div>
+    <steem-connect></steem-connect>
+    <blog-feeds></blog-feeds>
   </div>
 </template>
 

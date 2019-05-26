@@ -5,8 +5,8 @@
       <div class="list-group-item" v-for="(post, index) of posts" :key="index">
         <h4 class="list-group-item-heading">{{post.title}}</h4>
         <p>{{post.author}}</p>
-        <img :src="post.image" class="img-responsive center-block"/>
-        <p class="list-group-item-text text-right text-nowrap">{{post.created}}</p>
+        <img :src="post.image"/>
+        <p class="list-group-item-created">{{post.created}}</p>
       </div>
     </template>
     <template v-else>
@@ -65,5 +65,11 @@
 </script>
 
 <style scoped>
-
+  .list-group-item {
+    border: 1px solid darkgray;
+    padding: 20px;
+  }
+  .list-group-item-created {
+    text-align: right;
+  }
 </style>
