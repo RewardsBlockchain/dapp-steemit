@@ -17,7 +17,7 @@
 </template>
 
 <script>
-  const sc2 = require('sc2-sdk');
+  const sc2 = require('steemconnect');
 
   export default {
     name: "steem-connect",
@@ -65,8 +65,8 @@
       initialize() {
         this.api = sc2.Initialize({
           app: 'steemshopping',
-          callbackURL: 'https://www.rewards.com/rwrd-steemit',
-          // callbackURL: 'http://localhost:8080',
+          // callbackURL: 'https://www.rewards.com/rwrd-steemit',
+          callbackURL: 'http://localhost:8080',
           accessToken: 'access_token',
           scope: ['vote', 'comment'],
         });
