@@ -8,6 +8,10 @@ Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
   el: '#rw-steemit',
+  created: function () {
+    window.Vue = this;
+    window.VueGlobal = Vue;
+  },
   components: { App },
   template: '<App/>'
 })

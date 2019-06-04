@@ -12,7 +12,11 @@
         <div v-if="post.details" v-html="post.body">
         </div>
         <img v-else :src="post.image"/>
-        <p class="list-group-item-created">{{post.created}}</p>
+        <p class="list-group-item-actions">
+          <a href="#" @click="vote(post)" class="vote">Vote</a>
+          Total Votes:<span class="vote-num">{{post.activeVotes.length}}</span>
+          <span class="created">{{post.created}}</span>
+        </p>
       </div>
     </template>
     <template v-else>
@@ -56,9 +60,11 @@
               const author = post.author;
               const body = md.render(post.body);
               const permlink = post.permlink;
+              const activeVotes = post.active_votes;
               const created = new Date(post.created).toDateString();
               vm.posts.push({
                 title: title,
+                activeVotes: activeVotes,
                 author: author,
                 image: image,
                 body: body,
@@ -71,10 +77,13 @@
           .catch(err => {
             console.log(err);
           });
+      },
+      vote(post) {
+        Vue.$emit('vote:steemconnect', post);
       }
     },
     mounted() {
-      this.fetchBlogs()
+      this.fetchBlogs();
     },
   }
 </script>
@@ -85,8 +94,17 @@
     padding: 20px;
   }
 
-  .list-group-item-created {
+  .list-group-item-actions {
     text-align: right;
+  }
+
+  .vote {
+    margin-right: 20px;
+  }
+
+  .vote-num {
+    color: blue;
+    margin-right: 20px;
   }
 
   .view-details {
