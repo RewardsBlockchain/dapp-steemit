@@ -30,6 +30,9 @@
           currentRewards: '',
           created: ''
         },
+        callbackURL: process.env.NODE_ENV === 'development' ? 'http://localhost:8080' : 'https://www.rewards.com/rwrd-steemit',
+        app: 'steemshopping',
+        storeEndPoint: 'https://www.rewards.com/api/steemit/account'
       }
     },
     methods: {
@@ -57,13 +60,21 @@
             vm.account.commentCount = res.account.comment_count;
             vm.account.currentRewards = res.account.curation_rewards;
             vm.account.created = res.account.created;
+            vm.saveAccountInfo(res)
           }
         });
       },
+      saveAccountInfo(data) {
+        this.$http.post(this.storeEndPoint, data).then((result) => {
+          console.log(result);
+        }).catch((error) => {
+          console.log(error);
+        })
+      },
       initialize() {
         this.client = new steemconnect.Client({
-          app: 'steemshopping',
-          callbackURL: process.env.NODE_ENV === 'development' ? 'http://localhost:8080' : 'https://www.rewards.com/rwrd-steemit',
+          app: this.app,
+          callbackURL: this.callbackURL,
           accessToken: 'access_token',
           scope: ['vote', 'comment'],
         });
